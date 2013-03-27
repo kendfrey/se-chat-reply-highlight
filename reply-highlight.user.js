@@ -38,7 +38,6 @@ function addJQuery( callback, jqVersion ) {
 function main( $ ) {
   $( function() {
 
-    console.log( "Setting up..." );
     $( "#input" ).keyup(
       function() {
         var _text = $( "#input" ).val();
@@ -47,7 +46,6 @@ function main( $ ) {
 
         $( ".reply-child" ).removeClass( "reply-child" );
         if( _matches && _matches[1] ) {
-          console.log( _matches[1], $( "#message-" + _matches[1] ) )
           $( "#message-" + _matches[1] ).first().addClass( "reply-child" );
         }
       } );
