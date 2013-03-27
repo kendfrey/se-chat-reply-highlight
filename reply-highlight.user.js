@@ -9,7 +9,7 @@
 //
 // @include        http://chat.stackexchange.com/*
 //
-// @version        0.808
+// @version        0.909
 //
 // ==/UserScript==
 
@@ -58,7 +58,7 @@ function main( $ ) {
         
         var _text = $( "#input" ).val();
         
-        if( _text.match( /:($|\d)/ ) ) {
+        if( _text.match( /:($|\d| )/ ) ) {
           // 38 = Up Arrow, 40 == Down Arrow
           if( 38 == e.keyCode || 40 == e.keyCode ) {
             
