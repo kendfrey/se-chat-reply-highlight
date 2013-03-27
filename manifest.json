@@ -1,6 +1,6 @@
 {
   "name"            :"StackExchange Chat Reply Helper",
-  "version"         :"0.666",
+  "version"         :"0.7",
   "manifest_version":2,
   "description"     :"Highlights the message you're replying to.",
   "content_scripts" :[

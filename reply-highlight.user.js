@@ -46,9 +46,11 @@ function main( $ ) {
 
     $( "#input" ).keyup(
       function( e ) {
+        if( $( "#input" ).hasClass( "editing" ) ) return;
+        
         var _text = $( "#input" ).val();
         
-        if( ":" == _text.substring( 0, 1 ) ) {
+        if( _text.match( /:($|\d)/ ) ) {
           // 38 = Up Arrow, 40 == Down Arrow
           if( 38 == e.keyCode || 40 == e.keyCode ) {
             
