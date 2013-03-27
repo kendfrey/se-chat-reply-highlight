@@ -49,7 +49,7 @@ function main( $ ) {
       
       var _target = message.offset().top - 10;
       if( _target < 0 ) _target = 0;
-      $( "body" ).animate( { scrollTop: _target }, 50 );
+      $( "html, body" ).animate( { scrollTop: _target }, 50 );
     }
     
     $( "#input" ).keydown(
