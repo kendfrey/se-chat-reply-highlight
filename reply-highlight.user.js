@@ -9,7 +9,7 @@
 //
 // @include        http://chat.stackexchange.com/*
 //
-// @version        0.666
+// @version        0.7
 //
 // ==/UserScript==
 
