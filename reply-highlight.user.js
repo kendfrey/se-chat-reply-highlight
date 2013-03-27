@@ -1,6 +1,6 @@
 // ==UserScript==
 //
-// @name           SE Chat Reply Highlight
+// @name           SE Chat Reply Helper
 // @description    Highlights the message you're replying to.
 // @homepage       http://github.com/oliversalzburg/se-chat-reply-highlight/
 // @namespace      http://oliversalzburg.github.com/
@@ -9,7 +9,7 @@
 //
 // @include        http://chat.stackexchange.com/*
 //
-// @version        0.5
+// @version        0.666
 //
 // ==/UserScript==
 
@@ -37,6 +37,12 @@ function main( $ ) {
   $( function() {
     
     $.fn.reverse = [].reverse;
+    
+    function replyTo( id ) {
+      var _currentText = $( "#input" ).val();
+      var _newText = _currentText.replace( /^:\d* ?/, ":" + id + " " );
+      $( "#input" ).val( _newText );
+    }
 
     $( "#input" ).keyup(
       function( e ) {
@@ -59,18 +65,17 @@ function main( $ ) {
               _messages.each( function( index, item ) {
                 if( $( item ).attr( "id" ) == _previousMarker.attr( "id" ) ) {
                   $( _messages[ index + 1 ] ).first().addClass( "reply-child" );
-                  $( "#input" ).val( ":" + $( _messages[ index + 1 ] ).attr( "id" ).substring( "message-".length ) );
+                  replyTo( $( _messages[ index + 1 ] ).attr( "id" ).substring( "message-".length ) );
                 }
               } );
               
             } else {
               $( ".messages .message" ).last().addClass( "reply-child" );
-              $( "#input" ).val( ":" + $( ".messages .message" ).last().attr( "id" ).substring( "message-".length ) );
+              replyTo( $( ".messages .message" ).last().attr( "id" ).substring( "message-".length ) );
             }
             
             e.preventDefault();
           }
-          
           
         } else {
         
