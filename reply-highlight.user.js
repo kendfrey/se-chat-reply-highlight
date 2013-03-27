@@ -52,7 +52,7 @@ function main( $ ) {
       $( "body" ).animate( { scrollTop: _target }, 50 );
     }
     
-    $( "#input" ).keyup(
+    $( "#input" ).keydown(
       function( e ) {
         if( $( "#input" ).hasClass( "editing" ) ) return;
         
