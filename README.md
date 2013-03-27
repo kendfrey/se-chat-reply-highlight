@@ -1,4 +1,7 @@
-se-chat-reply-highlight
-=======================
+Stack Exchange Chat Reply Helper
+================================
 
-This script highlights the message you're currently replying to when typing `:1234567`.
+![How it works](https://raw.github.com/oliversalzburg/se-chat-reply-highlight/master/640-400.png)
+
+1. Press `:` to start replying to a previous message.
+2. Press `↑` as many times as you need to mark the desired message.
