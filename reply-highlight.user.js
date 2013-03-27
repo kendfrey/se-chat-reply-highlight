@@ -9,7 +9,7 @@
 //
 // @include        http://chat.stackexchange.com/*
 //
-// @version        0.4
+// @version        0.5
 //
 // ==/UserScript==
 
@@ -65,8 +65,10 @@ function main( $ ) {
               
             } else {
               $( ".messages .message" ).last().addClass( "reply-child" );
-              e.preventDefault();
+              $( "#input" ).val( ":" + $( ".messages .message" ).last().attr( "id" ).substring( "message-".length ) );
             }
+            
+            e.preventDefault();
           }
           
           
