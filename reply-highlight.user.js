@@ -43,7 +43,15 @@ function main( $ ) {
       var _newText = _currentText.replace( /^:\d* ?/, ":" + id + " " );
       $( "#input" ).val( _newText );
     }
-
+   
+    function scrollTo( message ) {
+      if( !message.offset() ) return;
+      
+      var _target = message.offset().top - 10;
+      if( _target < 0 ) _target = 0;
+      $( "body" ).animate( { scrollTop: _target }, 50 );
+    }
+    
     $( "#input" ).keyup(
       function( e ) {
         if( $( "#input" ).hasClass( "editing" ) ) return;
@@ -66,14 +74,26 @@ function main( $ ) {
               
               _messages.each( function( index, item ) {
                 if( $( item ).attr( "id" ) == _previousMarker.attr( "id" ) ) {
-                  $( _messages[ index + 1 ] ).first().addClass( "reply-child" );
-                  replyTo( $( _messages[ index + 1 ] ).attr( "id" ).substring( "message-".length ) );
+                  var _target = $( _messages[ index + 1 ] ).first();
+                  if( !_target ) return;
+                  
+                  _target.addClass( "reply-child" );
+                  scrollTo( _target );
+                  
+                  var _id = $( _messages[ index + 1 ] ).attr( "id" );
+                  if( _id ) replyTo( _id.substring( "message-".length ) );
                 }
               } );
               
             } else {
-              $( ".messages .message" ).last().addClass( "reply-child" );
-              replyTo( $( ".messages .message" ).last().attr( "id" ).substring( "message-".length ) );
+              var _target = $( ".messages .message" ).last();
+              if( !_target ) return;
+              
+              _target.addClass( "reply-child" );
+              scrollTo( _target );
+              
+              var _id = $( ".messages .message" ).last().attr( "id" );
+              if( _id ) replyTo( _id.substring( "message-".length ) );
             }
             
             e.preventDefault();
