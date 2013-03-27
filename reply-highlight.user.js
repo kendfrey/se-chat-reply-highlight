@@ -35,17 +35,52 @@ function addJQuery( callback, jqVersion ) {
  */
 function main( $ ) {
   $( function() {
+    
+    $.fn.reverse = [].reverse;
 
     $( "#input" ).keyup(
-      function() {
+      function( e ) {
         var _text = $( "#input" ).val();
-        var _pattern = /^:(\d+)/g;
-        var _matches = _pattern.exec( _text );
-
-        $( ".reply-child" ).removeClass( "reply-child" );
-        if( _matches && _matches[1] ) {
-          $( "#message-" + _matches[1] ).first().addClass( "reply-child" );
+        
+        if( ":" == _text.substring( 0, 1 ) ) {
+          // 38 = Up Arrow, 40 == Down Arrow
+          if( 38 == e.keyCode || 40 == e.keyCode ) {
+            
+            var _direction = ( 38 == e.keyCode ) ? -1 : 1;
+            
+            var _previousMarker = $( ".reply-child" );
+            if( 0 < _previousMarker.length ) {
+              _previousMarker = _previousMarker.first();
+              $( ".reply-child" ).removeClass( "reply-child" );
+              
+              var _messages = $( ".messages .message" );
+              if( -1 == _direction ) _messages = _messages.reverse();
+              
+              _messages.each( function( index, item ) {
+                if( $( item ).attr( "id" ) == _previousMarker.attr( "id" ) ) {
+                  $( _messages[ index + 1 ] ).first().addClass( "reply-child" );
+                  $( "#input" ).val( ":" + $( _messages[ index + 1 ] ).attr( "id" ).substring( "message-".length ) );
+                }
+              } );
+              
+            } else {
+              $( ".messages .message" ).last().addClass( "reply-child" );
+              e.preventDefault();
+            }
+          }
+          
+          
+        } else {
+        
+          var _pattern = /^:(\d+)/g;
+          var _matches = _pattern.exec( _text );
+  
+          $( ".reply-child" ).removeClass( "reply-child" );
+          if( _matches && _matches[1] ) {
+            $( "#message-" + _matches[1] ).first().addClass( "reply-child" );
+          }
         }
+        
       } );
 
   } );
