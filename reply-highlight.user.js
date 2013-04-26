@@ -9,7 +9,7 @@
 //
 // @include        http://chat.stackexchange.com/*
 //
-// @version        0.999
+// @version        1.0
 //
 // ==/UserScript==
 
@@ -108,7 +108,11 @@ function main( $ ) {
   $( function() {
     
     $.fn.reverse = [].reverse;
-    
+
+    /**
+     * Reply to a message with a given ID
+     * @param id The ID of the message to reply to
+     */
     function replyTo( id ) {
       var _inputElement = $( "#input" );
       var _caretPosition = _inputElement.caret().start;
@@ -117,7 +121,11 @@ function main( $ ) {
       _inputElement.val( _newText );
       _inputElement.caret( _caretPosition, _caretPosition );
     }
-   
+
+    /**
+     * Scroll a given message into view
+     * @param message The message to scroll into view (jQuery object)
+     */
     function scrollTo( message ) {
       if( !message.offset() ) return;
       
@@ -125,7 +133,23 @@ function main( $ ) {
       if( _target < 0 ) _target = 0;
       $( "html, body" ).animate( { scrollTop: _target }, 50 );
     }
-    
+
+    /**
+     * Does all the things needed to mark a new message as the message that is being replied to.
+     * @param _target
+     */
+    function updateReply( _target ) {
+      // Put our marker and highlight classes on it...
+      _target.addClass( "reply-child se-highlight-helper" );
+      // ...and make sure it's scrolled into view.
+      scrollTo( _target );
+
+      // Now grab the ID of the new message...
+      var _id = _target.attr( "id" );
+      // ...and update our input box.
+      if( _id ) replyTo( _id.substring( "message-".length ) );
+    }
+
     $( "#input" ).keydown(
       function( e ) {
         // Store reference to input element
@@ -149,58 +173,53 @@ function main( $ ) {
           if( 38 == e.keyCode || 40 == e.keyCode ) {
 
             // Find the position of the caret
-			      var _caretPosition = _inputElement.caret().start;
+            var _caretPosition = _inputElement.caret().start;
             // If it is behind the ID, don't do anything (could conflict with multi-line editing).
             if( _caretPosition > _idMatch[ 0 ].length + 1 ) return;
 
+            // Determine if the user is moving upwards or downwards
             var _direction = ( 38 == e.keyCode ) ? -1 : 1;
-            
-            var _previousMarker = $( ".reply-child" );
+
+            // Find the message that was previously selected by the user,
+            // because we now want to select another message relative to it.
+            var _previousMarker = $( ".reply-child.se-highlight-helper" );
+            // Did we find a previous marker?
             if( 0 < _previousMarker.length ) {
+              // We only care about the first match
               _previousMarker = _previousMarker.first();
-              $( ".reply-child" ).removeClass( "reply-child" );
-              
+              // Remove the previous CSS marker classes from it.
+              _previousMarker.removeClass( "reply-child se-highlight-helper" );
+
+              // Grab a collection of all messages.
               var _messages = $( ".messages .message" );
+              // Reverse the selection, depending on which direction we're moving.
               if( -1 == _direction ) _messages = _messages.reverse();
-              
+
+              // Iterate over all messages.
               _messages.each( function( index, item ) {
+                // If the message we're currently looking at, is the one we previously marked...
                 if( $( item ).attr( "id" ) == _previousMarker.attr( "id" ) ) {
+                  // ...select the message after it as the new target.
                   var _target = $( _messages[ index + 1 ] ).first();
                   if( !_target ) return;
-                  
-                  _target.addClass( "reply-child" );
-                  scrollTo( _target );
-                  
-                  var _id = $( _messages[ index + 1 ] ).attr( "id" );
-                  if( _id ) replyTo( _id.substring( "message-".length ) );
+
+                  updateReply( _target );
                 }
               } );
               
             } else {
-              var _target = $( ".messages .message" ).last();
+              // If no message was previously selected, just target the last message in the log.
+              var _messages = $( ".messages .message" );
+              var _target = _messages.last();
               if( !_target ) return;
-              
-              _target.addClass( "reply-child" );
-              scrollTo( _target );
-              
-              var _id = $( ".messages .message" ).last().attr( "id" );
-              if( _id ) replyTo( _id.substring( "message-".length ) );
+
+              updateReply( _target );
             }
             
             e.preventDefault();
           }
           
-        } else {
-        
-          var _pattern = /^:(\d+)/g;
-          var _matches = _pattern.exec( _text );
-  
-          $( ".reply-child" ).removeClass( "reply-child" );
-          if( _matches && _matches[1] ) {
-            $( "#message-" + _matches[1] ).first().addClass( "reply-child" );
-          }
         }
-        
       } );
 
   } );
