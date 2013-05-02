@@ -214,6 +214,12 @@ function main( $ ) {
               if( !_target ) return;
 
               updateReply( _target );
+
+              // If we were just beginning a new reply, put the caret after the ID
+              if( _text == ":" ) {
+                var _newCaretPosition = _inputElement.val().length;
+                _inputElement.caret( _newCaretPosition, _newCaretPosition );
+              }
             }
             
             e.preventDefault();
