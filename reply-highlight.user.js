@@ -9,7 +9,7 @@
 //
 // @include        http://chat.stackexchange.com/*
 //
-// @version        1.0
+// @version        1.0.1
 //
 // ==/UserScript==
 
@@ -225,6 +225,10 @@ function main( $ ) {
             e.preventDefault();
           }
           
+        } else {
+          // If the user isn't replying to anything,
+          // make sure the markers are cleared.
+          $( ".reply-child.se-highlight-helper" ).removeClass( "reply-child se-highlight-helper" );
         }
       } );
 
