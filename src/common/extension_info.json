@@ -1,0 +1,10 @@
+{
+  "description": "Highlights the message you're replying to.",
+  "creator": "Oliver Salzburg",
+  "content_scripts": [
+    "main.js"
+  ], 
+  "homepage_url": "https://github.com/oliversalzburg/se-chat-reply-highlight",
+  "version": "1.0.1",
+  "name": "SE Chat Reply Helper"
+}
