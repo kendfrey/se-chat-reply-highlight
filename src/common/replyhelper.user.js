@@ -89,15 +89,15 @@ var $ = window.$.noConflict(true); // Required for Opera and IE
 
 $.fn.reverse = [].reverse;
 
-function MyExtension() {
+/**
+ * Constructs a new ReplyHelper instance
+ * @constructor
+ */
+function ReplyHelper() {
   this.registerHandler();
 }
 
-MyExtension.prototype = {
-
-  _onCommand: function() {
-    kango.browser.tabs.create( {url: 'http://kangoextensions.com/'} );
-  },
+ReplyHelper.prototype = {
 
   /**
    * Reply to a message with a given ID
@@ -226,4 +226,5 @@ MyExtension.prototype = {
   }
 };
 
-var extension = new MyExtension();
+// Construct extension instance
+var replyHelper = new ReplyHelper();
