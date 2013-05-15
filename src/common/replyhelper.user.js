@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        1.0.1
+// @version        1.5
 //
 // ==/UserScript==
 
