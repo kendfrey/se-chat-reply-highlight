@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 //
-// @name           SE Chat Reply Helper
-// @description    Highlights the message you're replying to.
+// @name           Stack Exchange Chat Reply Helper
+// @description    Handle structured conversations more conveniently
 // @homepage       http://github.com/oliversalzburg/se-chat-reply-highlight/
 // @namespace      http://oliversalzburg.github.com/
 // @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        1.5
+// @version        1.5.1
 //
 // ==/UserScript==
 

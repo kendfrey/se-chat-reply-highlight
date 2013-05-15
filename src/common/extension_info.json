@@ -1,10 +1,10 @@
 {
-  "description": "Highlights the message you're replying to.",
+  "description": "Handle structured conversations more conveniently",
   "creator": "Oliver Salzburg",
   "content_scripts": [
     "replyhelper.user.js"
   ], 
   "homepage_url": "https://github.com/oliversalzburg/se-chat-reply-highlight",
-  "version": "1.5",
-  "name": "SE Chat Reply Helper"
+  "version": "1.5.1",
+  "name": "Stack Exchange Chat Reply Helper"
 }
