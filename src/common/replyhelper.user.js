@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 //
-// @name           Stack Exchange Chat Reply Helper
+// @name           Chat Reply Helper for Stack Exchange sites
 // @description    Handle structured conversations more conveniently
 // @homepage       http://github.com/oliversalzburg/se-chat-reply-highlight/
 // @namespace      http://oliversalzburg.github.com/
@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        1.5.1
+// @version        1.5.2
 //
 // ==/UserScript==
 
