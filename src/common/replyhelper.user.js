@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        1.6.0
+// @version        2.0.0
 //
 // ==/UserScript==
 
@@ -95,9 +95,12 @@ $.fn.reverse = [].reverse;
  */
 function ReplyHelper() {
   this.registerHandler();
+  this.enableQuoteBubble();
 }
 
 ReplyHelper.prototype = {
+
+  quotedMessage:null,
 
   /**
    * Reply to a message with a given ID
@@ -227,6 +230,108 @@ ReplyHelper.prototype = {
     $( document ).on( "click", ".newreply", function( event ) {
       replyHelper.updateReply( $( this ).parents( ".messages .message" ) );
     } );
+  },
+
+  /**
+   * Enables a bubble that shows the content of the message replied to.
+   * This bubble is shown when hovering over the icon that indicates that a message is a reply.
+   */
+  enableQuoteBubble:function() {
+    $( document ).on( "mousemove", function( event ) {
+      if( null == replyHelper.quotedMessage ) return;
+
+      // Determine the height of the reply bubble.
+      // We need to do this here because when we attach the bubble to the DOM,
+      // the height is not yet available.
+      var messageHeight = replyHelper.quotedMessage.height();
+      if( 0 == messageHeight ) return;
+
+      // Calculate the correct position for the bubble.
+      var left = event.pageX;
+      var top = event.pageY -( messageHeight + 30 );
+      replyHelper.quotedMessage.attr( "style", "position:absolute;left:" + left + "px;top:" + top + "px;z-index:1" );
+    });
+
+    $( document ).on( "mouseenter", ".reply-info", function(event) {
+      var quotedMessage = null;
+
+      // Determine the ID of the message that was replied to.
+      var href = $( this ).attr( "href" );
+      var hashPosition = href.lastIndexOf( "#" );
+      var originalId = href.substr( hashPosition + 1 );
+
+      // Find the original message (if it is still in the log).
+      var originalMessage = $( "#message-" + originalId );
+      if( 0 < originalMessage.length ) {
+        // Get the actual message
+        var messageContent = $( ".content", originalMessage ).html();
+
+        // Was the message from us?
+        var wasMine = originalMessage.parents( ".user-container" ).hasClass( "mine" );
+
+        // Try to find a timestamp
+        // We search a bit here and there, as other extensions can add timestamps at other places.
+        var timestamp = null;
+        var messageChild = $( ".timestamp", originalMessage );
+        var messageSibling =  $( originalMessage ).siblings( ".timestamp" );
+        if( 0 < messageChild.length ) {
+          timestamp = messageChild;
+        } else if( 0 < messageSibling.length ) {
+          timestamp = messageSibling;
+        }
+
+        // Find the author
+        var author = null;
+        var signature = originalMessage.parents( ".messages" ).siblings( ".signature" );
+        if( 0 < signature.length ) {
+          author = signature.clone();
+
+          // Construct our new author overlay
+          var backgroundColor = originalMessage.parents( ".messages" ).css( "background-color" );
+          author.attr( "style", "background-color:" + backgroundColor + "; width:inherit; border-top:1px solid black; border-right:1px solid black; border-left:1px solid black; border-top-left-radius:6px; border-top-right-radius:6px; padding:2px 5px 2px 5px; z-index:2; position:relative; top:1px;" );
+        }
+
+        // Construct the final message element.
+        quotedMessage = $(
+          "<div class='user-container monologue' style='position:absolute;top:-9999;'>"
+            + "<div class='messages' style='border:1px solid black; border-top-left-radius:0;'>"
+            + "<div class='message'>"
+            + "<div class='content'>"
+            + messageContent
+            + "</div>"
+            + "</div>"
+            + "</div>"
+            + "</div>"
+        );
+
+        // Add marker if the message was from us.
+        if( wasMine ) {
+          quotedMessage.addClass( "mine" );
+        }
+
+        // Add the timestamp
+        if( timestamp ) {
+          var timestampNode = $( "<div class='timestamp'>" + timestamp.text() + "</div>" );
+          $( ".message", quotedMessage ).before( timestampNode );
+        }
+        // Add the author
+        if( author ) {
+          $( ".messages", quotedMessage ).before( author );
+        }
+
+        // Add the bubble to the DOM.
+        $( this ).parents( ".monologue" ).before( quotedMessage );
+
+        // Remember the element for later removal.
+        replyHelper.quotedMessage = quotedMessage;
+      }
+    });
+
+    $( document ).on( "mouseleave", ".reply-info", function(event) {
+      // Remove the quote bubble
+      replyHelper.quotedMessage.remove();
+      replyHelper.quotedMessage = null;
+    });
   }
 };
 
