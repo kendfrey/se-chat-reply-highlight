@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        2.0.1
+// @version        2.0.2
 //
 // ==/UserScript==
 
@@ -298,7 +298,7 @@ ReplyHelper.prototype = {
         // Construct the final message element.
         quotedMessage = $(
           "<div class='user-container monologue' style='position:absolute;top:-9999;'>"
-            + "<div class='messages' style='border:1px solid black; border-top-left-radius:0;'>"
+            + "<div class='messages' style='border:1px solid black; border-top-left-radius:0; max-width:660px;'>"
             + "<div class='message'>"
             + "<div class='content'>"
             + messageContent
