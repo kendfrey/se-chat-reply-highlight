@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        2.0.0
+// @version        2.0.1
 //
 // ==/UserScript==
 
@@ -285,6 +285,10 @@ ReplyHelper.prototype = {
         var signature = originalMessage.parents( ".messages" ).siblings( ".signature" );
         if( 0 < signature.length ) {
           author = signature.clone();
+          // Remove all but the tiny signature
+          var tinySignature = $( ".tiny-signature", author ).detach();
+          $( author ).empty().append( tinySignature );
+          $( tinySignature ).show();
 
           // Construct our new author overlay
           var backgroundColor = originalMessage.parents( ".messages" ).css( "background-color" );

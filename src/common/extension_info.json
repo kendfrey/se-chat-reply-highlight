@@ -5,6 +5,6 @@
     "replyhelper.user.js"
   ], 
   "homepage_url": "https://github.com/oliversalzburg/se-chat-reply-highlight",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "name": "Chat Reply Helper for Stack Exchange sites"
 }
