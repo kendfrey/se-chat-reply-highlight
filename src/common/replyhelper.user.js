@@ -10,7 +10,7 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        1.5.2
+// @version        1.6.0
 //
 // ==/UserScript==
 
@@ -223,6 +223,11 @@ ReplyHelper.prototype = {
           $( ".reply-child.se-highlight-helper" ).removeClass( "reply-child se-highlight-helper" );
         }
       } );
+
+    $( document ).on( "click", ".newreply", function( event ) {
+      replyHelper.updateReply( $( this ).parents( ".messages .message" ) );//.addClass( "reply-child se-highlight-helper" );
+
+    } );
   }
 };
 
