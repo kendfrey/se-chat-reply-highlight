@@ -225,8 +225,7 @@ ReplyHelper.prototype = {
       } );
 
     $( document ).on( "click", ".newreply", function( event ) {
-      replyHelper.updateReply( $( this ).parents( ".messages .message" ) );//.addClass( "reply-child se-highlight-helper" );
-
+      replyHelper.updateReply( $( this ).parents( ".messages .message" ) );
     } );
   }
 };
