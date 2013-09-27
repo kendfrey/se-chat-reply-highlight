@@ -1,3 +1,3 @@
-content se-chat-replyhelper-bb2530b5-f6a5-4c8e-ac22-3a095413c345 content/
-content se-chat-replyhelper-bb2530b5-f6a5-4c8e-ac22-3a095413c345 content/ contentaccessible=yes
-overlay chrome://browser/content/browser.xul chrome://se-chat-replyhelper-bb2530b5-f6a5-4c8e-ac22-3a095413c345/content/browser.xul
+content se-chat-replyhelper-6df67709-ece1-4252-bc58-ba8e2320da7e content/
+content se-chat-replyhelper-6df67709-ece1-4252-bc58-ba8e2320da7e content/ contentaccessible=yes
+overlay chrome://browser/content/browser.xul chrome://se-chat-replyhelper-6df67709-ece1-4252-bc58-ba8e2320da7e/content/browser.xul

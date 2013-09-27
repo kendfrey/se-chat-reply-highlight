@@ -62,7 +62,7 @@ var SeChatReplyhelper = {
       if( siteRegexp.test( href ) ) {
         setTimeout( function() {
           SeChatReplyhelper.injectScript( "se-chat-replyhelper-script",
-                                          "chrome://se-chat-replyhelper-bb2530b5-f6a5-4c8e-ac22-3a095413c345/content/se-chat-replyhelper.js" );
+                                          "chrome://se-chat-replyhelper-6df67709-ece1-4252-bc58-ba8e2320da7e/content/se-chat-replyhelper.js" );
         }, 100 );
       }
     } );
