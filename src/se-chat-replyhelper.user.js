@@ -10,11 +10,9 @@
 // @include        http://chat.stackexchange.com/*
 // @require        jquery-1.8.3.min.js
 //
-// @version        2.0.2
+// @version        2.0.3
 //
 // ==/UserScript==
-
-var $ = window.$.noConflict(true); // Required for Opera and IE
 
 // jQuery Caret Plugin
 /*
