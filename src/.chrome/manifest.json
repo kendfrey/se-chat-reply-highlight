@@ -17,7 +17,7 @@
         "@ant-sites-string-list@"
       ],
       "all_frames": true,
-      "run_at"    : "document_start",
+      "run_at"    : "document_idle",
       "js"        : [
         "jquery-1.8.3.min.js",
         "se-chat-replyhelper.js"
