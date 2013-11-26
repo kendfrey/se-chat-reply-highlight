@@ -22,68 +22,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-(function($,len,createRange,duplicate){
-  $.fn.caret=function(options,opt2){
-    var start,end,t=this[0],browser=$.browser.msie;
-    if(typeof options==="object" && typeof options.start==="number" && typeof options.end==="number") {
-      start=options.start;
-      end=options.end;
-    } else if(typeof options==="number" && typeof opt2==="number"){
-      start=options;
-      end=opt2;
-    } else if(typeof options==="string"){
-      if((start=t.value.indexOf(options))>-1) end=start+options[len];
-      else start=null;
-    } else if(Object.prototype.toString.call(options)==="[object RegExp]"){
-      var re=options.exec(t.value);
-      if(re != null) {
-        start=re.index;
-        end=start+re[0][len];
-      }
-    }
-    if(typeof start!="undefined"){
-      if(browser){
-        var selRange = this[0].createTextRange();
-        selRange.collapse(true);
-        selRange.moveStart('character', start);
-        selRange.moveEnd('character', end-start);
-        selRange.select();
-      } else {
-        this[0].selectionStart=start;
-        this[0].selectionEnd=end;
-      }
-      this[0].focus();
-      return this
-    } else {
-      if(browser){
-        var selection=document.selection;
-        if (this[0].tagName.toLowerCase() != "textarea") {
-          var val = this.val(),
-            range = selection[createRange]()[duplicate]();
-          range.moveEnd("character", val[len]);
-          var s = (range.text == "" ? val[len]:val.lastIndexOf(range.text));
-          range = selection[createRange]()[duplicate]();
-          range.moveStart("character", -val[len]);
-          var e = range.text[len];
-        } else {
-          var range = selection[createRange](),
-            stored_range = range[duplicate]();
-          stored_range.moveToElementText(this[0]);
-          stored_range.setEndPoint('EndToEnd', range);
-          var s = stored_range.text[len] - range.text[len],
-            e = s + range.text[len]
-        }
-      } else {
-        var s=t.selectionStart,
-          e=t.selectionEnd;
-      }
-      var te=t.value.substring(s,e);
-      return {start:s,end:e,text:te,replace:function(st){
-        return t.value.substring(0,s)+st+t.value.substring(e,t.value[len])
-      }}
-    }
-  }
-})($,"length","createRange","duplicate");
+(function(e,t,n,r){e.fn.caret=function(i,s){var o,u,a=this[0],f=e.browser.msie;if(typeof i==="object"&&typeof i.start==="number"&&typeof i.end==="number"){o=i.start;u=i.end}else if(typeof i==="number"&&typeof s==="number"){o=i;u=s}else if(typeof i==="string"){if((o=a.value.indexOf(i))>-1)u=o+i[t];else o=null}else if(Object.prototype.toString.call(i)==="[object RegExp]"){var l=i.exec(a.value);if(l!=null){o=l.index;u=o+l[0][t]}}if(typeof o!="undefined"){if(f){var c=this[0].createTextRange();c.collapse(true);c.moveStart("character",o);c.moveEnd("character",u-o);c.select()}else{this[0].selectionStart=o;this[0].selectionEnd=u}this[0].focus();return this}else{if(f){var h=document.selection;if(this[0].tagName.toLowerCase()!="textarea"){var p=this.val(),d=h[n]()[r]();d.moveEnd("character",p[t]);var v=d.text==""?p[t]:p.lastIndexOf(d.text);d=h[n]()[r]();d.moveStart("character",-p[t]);var m=d.text[t]}else{var d=h[n](),g=d[r]();g.moveToElementText(this[0]);g.setEndPoint("EndToEnd",d);var v=g.text[t]-d.text[t],m=v+d.text[t]}}else{var v=a.selectionStart,m=a.selectionEnd}var y=a.value.substring(v,m);return{start:v,end:m,text:y,replace:function(e){return a.value.substring(0,v)+e+a.value.substring(m,a.value[t])}}}}})($,"length","createRange","duplicate")
 
 $.fn.reverse = [].reverse;
 
