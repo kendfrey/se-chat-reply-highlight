@@ -42,12 +42,20 @@ ReplyHelper.prototype = {
   /**
    * Reply to a message with a given ID
    * @param id The ID of the message to reply to
+   * @param trigger The string that triggered our script to run.
    */
-  replyTo: function( id ) {
+  replyTo: function( id, trigger ) {
+    trigger = trigger || ":";
+    // If : wasn't our trigger, we assume that we'll need additional padding after the trigger.
+    var _padding = "";
+    if( ":" != trigger && !trigger.match( / $/ ) ) {
+      _padding = " ";
+    }
+
     var _inputElement = $( "#input" );
     var _caretPosition = _inputElement.caret().start;
     var _currentText = _inputElement.val();
-    var _newText = _currentText.replace( /^:\d* ?/, ":" + id + " " );
+    var _newText = _currentText.replace( new RegExp( "^" + trigger + "\\d* ?"), trigger + _padding + id + " " );
     _inputElement.val( _newText );
     _inputElement.caret( _caretPosition, _caretPosition );
   },
@@ -68,7 +76,7 @@ ReplyHelper.prototype = {
    * Does all the things needed to mark a new message as the message that is being replied to.
    * @param _target
    */
-  updateReply: function( _target ) {
+  updateReply: function( _target, _trigger ) {
     // Put our marker and highlight classes on it...
     _target.addClass( "reply-child se-highlight-helper" );
     // ...and make sure it's scrolled into view.
@@ -77,7 +85,7 @@ ReplyHelper.prototype = {
     // Now grab the ID of the new message...
     var _id = _target.attr( "id" );
     // ...and update our input box.
-    if( _id ) this.replyTo( _id.substring( "message-".length ) );
+    if( _id ) this.replyTo( _id.substring( "message-".length ), _trigger );
   },
 
   registerHandler:function() {
@@ -97,12 +105,15 @@ ReplyHelper.prototype = {
         //     - End of Line
         //     - One or more digits
         //     - A space
-        var _idMatch = _text.match( /^:($|\d+| )/ );
+        var _idMatch = _text.match( /^(:|!!tell ?)($|\d+| )/ );
 
         // If the expression matched anything...
         if( _idMatch ) {
           // 38 = Up Arrow, 40 == Down Arrow
           if( 38 == e.keyCode || 40 == e.keyCode ) {
+
+            // Determine which character sequence caused our reply helper to be invoked.
+            var _trigger = _idMatch[ 1 ];
 
             // Find the position of the caret
             var _caretPosition = _inputElement.caret().start;
@@ -135,7 +146,7 @@ ReplyHelper.prototype = {
                   var _target = $( _messages[ index + 1 ] ).first();
                   if( !_target ) return;
 
-                  replyHelper.updateReply( _target );
+                  replyHelper.updateReply( _target, _trigger );
                 }
               } );
 
@@ -145,10 +156,10 @@ ReplyHelper.prototype = {
               var _target = _messages.last();
               if( !_target ) return;
 
-              replyHelper.updateReply( _target );
+              replyHelper.updateReply( _target, _trigger);
 
               // If we were just beginning a new reply, put the caret after the ID
-              if( _text == ":" ) {
+              if( _text == _trigger ) {
                 var _newCaretPosition = _inputElement.val().length;
                 _inputElement.caret( _newCaretPosition, _newCaretPosition );
               }
