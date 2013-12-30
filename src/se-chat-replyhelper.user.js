@@ -199,7 +199,12 @@ ReplyHelper.prototype = {
       // Calculate the correct position for the bubble.
       var left = event.pageX;
       var top = event.pageY - ( messageHeight + 30 );
-      replyHelper.quotedMessage.attr( "style", "position:absolute;left:" + left + "px;top:" + top + "px;z-index:3; min-width:0px" );
+      replyHelper.quotedMessage.attr( "style", "position : absolute;" +
+                                               "left:" + left + "px;" +
+                                               "top:" + top + "px;" +
+                                               "z-index : 3;" +
+                                               "min-width : 0px;"
+      );
     } );
 
     $( document ).on( "mouseenter", ".reply-info", function( event ) {
@@ -242,24 +247,24 @@ ReplyHelper.prototype = {
 
           // Construct our new author overlay
           var backgroundColor = originalMessage.parents( ".messages" ).css( "background-color" );
-          author.attr( "style", "background-color:" + backgroundColor + ";" +
-                                "width:inherit;" +
-                                "border-top:1px solid black;" +
-                                "border-right:1px solid black;" +
-                                "border-left:1px solid black;" +
-                                "border-top-left-radius:6px;" +
-                                "border-top-right-radius:6px;" +
-                                "padding:2px 5px 2px 5px;" +
-                                "z-index:2;" +
-                                "position:relative;" +
-                                "top:1px;"
+          author.attr( "style", "background-color : " + backgroundColor + ";" +
+                                "width : inherit;" +
+                                "border-top : 1px solid black;" +
+                                "border-right : 1px solid black;" +
+                                "border-left : 1px solid black;" +
+                                "border-top-left-radius : 6px;" +
+                                "border-top-right-radius : 6px;" +
+                                "padding : 2px 5px 2px 5px;" +
+                                "z-index : 2;" +
+                                "position : relative;" +
+                                "top : 1px;"
           );
         }
 
         // Construct the final message element.
         quotedMessage = $(
-          "<div class='user-container monologue' style='position:absolute;top:-9999;'>"
-            + "<div class='messages' style='border:1px solid black; border-top-left-radius:0; max-width:660px; width:inherit;'>"
+          "<div class='user-container monologue'>"
+            + "<div class='messages'>"
             + "<div class='message'>"
             + "<div class='content'>"
             + messageContent
@@ -267,6 +272,15 @@ ReplyHelper.prototype = {
             + "</div>"
             + "</div>"
             + "</div>"
+        );
+        quotedMessage.attr( "style", "position : absolute;" +
+                                     "top : -9999;"
+        );
+        $( ".messages", quotedMessage ).attr( "style", "border : 1px solid black;" +
+                                                       "border-top-left-radius : 0;" +
+                                                       "max-width : 660px;" +
+                                                       "width : inherit;"
+
         );
 
         // Add marker if the message was from us.
