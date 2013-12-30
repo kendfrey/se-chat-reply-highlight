@@ -293,9 +293,11 @@ ReplyHelper.prototype = {
     } );
 
     $( document ).on( "mouseleave", ".reply-info", function( event ) {
-      // Remove the quote bubble
-      replyHelper.quotedMessage.remove();
-      replyHelper.quotedMessage = null;
+      if( null != replyHelper.quotedMessage ) {
+        // Remove the quote bubble
+        replyHelper.quotedMessage.remove();
+        replyHelper.quotedMessage = null;
+      }
     } );
   }
 };
