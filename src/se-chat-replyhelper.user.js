@@ -249,7 +249,7 @@ ReplyHelper.prototype = {
         // Construct the final message element.
         quotedMessage = $(
           "<div class='user-container monologue' style='position:absolute;top:-9999;'>"
-            + "<div class='messages' style='border:1px solid black; border-top-left-radius:0; max-width:660px;'>"
+            + "<div class='messages' style='border:1px solid black; border-top-left-radius:0; max-width:660px; width:inherit;'>"
             + "<div class='message'>"
             + "<div class='content'>"
             + messageContent
