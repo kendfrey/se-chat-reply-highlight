@@ -22,7 +22,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
+// @formatter:off
 (function(e,t,n,r){e.fn.caret=function(i,s){var o,u,a=this[0],f=e.browser.msie;if(typeof i==="object"&&typeof i.start==="number"&&typeof i.end==="number"){o=i.start;u=i.end}else if(typeof i==="number"&&typeof s==="number"){o=i;u=s}else if(typeof i==="string"){if((o=a.value.indexOf(i))>-1)u=o+i[t];else o=null}else if(Object.prototype.toString.call(i)==="[object RegExp]"){var l=i.exec(a.value);if(l!=null){o=l.index;u=o+l[0][t]}}if(typeof o!="undefined"){if(f){var c=this[0].createTextRange();c.collapse(true);c.moveStart("character",o);c.moveEnd("character",u-o);c.select()}else{this[0].selectionStart=o;this[0].selectionEnd=u}this[0].focus();return this}else{if(f){var h=document.selection;if(this[0].tagName.toLowerCase()!="textarea"){var p=this.val(),d=h[n]()[r]();d.moveEnd("character",p[t]);var v=d.text==""?p[t]:p.lastIndexOf(d.text);d=h[n]()[r]();d.moveStart("character",-p[t]);var m=d.text[t]}else{var d=h[n](),g=d[r]();g.moveToElementText(this[0]);g.setEndPoint("EndToEnd",d);var v=g.text[t]-d.text[t],m=v+d.text[t]}}else{var v=a.selectionStart,m=a.selectionEnd}var y=a.value.substring(v,m);return{start:v,end:m,text:y,replace:function(e){return a.value.substring(0,v)+e+a.value.substring(m,a.value[t])}}}}})($,"length","createRange","duplicate")
+// @formatter:on
 
 $.fn.reverse = [].reverse;
 
@@ -37,14 +39,14 @@ function ReplyHelper() {
 
 ReplyHelper.prototype = {
 
-  quotedMessage:null,
+  quotedMessage : null,
 
   /**
    * Reply to a message with a given ID
    * @param id The ID of the message to reply to
    * @param trigger The string that triggered our script to run.
    */
-  replyTo: function( id, trigger ) {
+  replyTo : function( id, trigger ) {
     trigger = trigger || ":";
     // If : wasn't our trigger, we assume that we'll need additional padding after the trigger.
     var _padding = "";
@@ -55,7 +57,7 @@ ReplyHelper.prototype = {
     var _inputElement = $( "#input" );
     var _caretPosition = _inputElement.caret().start;
     var _currentText = _inputElement.val();
-    var _newText = _currentText.replace( new RegExp( "^" + trigger + "\\d* ?"), trigger + _padding + id + " " );
+    var _newText = _currentText.replace( new RegExp( "^" + trigger + "\\d* ?" ), trigger + _padding + id + " " );
     _inputElement.val( _newText );
     _inputElement.caret( _caretPosition, _caretPosition );
   },
@@ -64,19 +66,19 @@ ReplyHelper.prototype = {
    * Scroll a given message into view
    * @param message The message to scroll into view (jQuery object)
    */
-  scrollTo   : function( message ) {
+  scrollTo : function( message ) {
     if( !message.offset() ) return;
 
     var _target = message.offset().top - 10;
     if( _target < 0 ) _target = 0;
-    $( "html, body" ).animate( { scrollTop: _target }, 50 );
+    $( "html, body" ).animate( { scrollTop : _target }, 50 );
   },
 
   /**
    * Does all the things needed to mark a new message as the message that is being replied to.
    * @param _target
    */
-  updateReply: function( _target, _trigger ) {
+  updateReply : function( _target, _trigger ) {
     // Put our marker and highlight classes on it...
     _target.addClass( "reply-child se-highlight-helper" );
     // ...and make sure it's scrolled into view.
@@ -88,7 +90,7 @@ ReplyHelper.prototype = {
     if( _id ) this.replyTo( _id.substring( "message-".length ), _trigger );
   },
 
-  registerHandler:function() {
+  registerHandler : function() {
     var replyHelper = this;
     $( "#input" ).keydown(
       function( e ) {
@@ -156,7 +158,7 @@ ReplyHelper.prototype = {
               var _target = _messages.last();
               if( !_target ) return;
 
-              replyHelper.updateReply( _target, _trigger);
+              replyHelper.updateReply( _target, _trigger );
 
               // If we were just beginning a new reply, put the caret after the ID
               if( _text == _trigger ) {
@@ -184,7 +186,7 @@ ReplyHelper.prototype = {
    * Enables a bubble that shows the content of the message replied to.
    * This bubble is shown when hovering over the icon that indicates that a message is a reply.
    */
-  enableQuoteBubble:function() {
+  enableQuoteBubble : function() {
     $( document ).on( "mousemove", function( event ) {
       if( null == replyHelper.quotedMessage ) return;
 
@@ -196,11 +198,11 @@ ReplyHelper.prototype = {
 
       // Calculate the correct position for the bubble.
       var left = event.pageX;
-      var top = event.pageY -( messageHeight + 30 );
+      var top = event.pageY - ( messageHeight + 30 );
       replyHelper.quotedMessage.attr( "style", "position:absolute;left:" + left + "px;top:" + top + "px;z-index:1" );
-    });
+    } );
 
-    $( document ).on( "mouseenter", ".reply-info", function(event) {
+    $( document ).on( "mouseenter", ".reply-info", function( event ) {
       var quotedMessage = null;
 
       // Determine the ID of the message that was replied to.
@@ -221,7 +223,7 @@ ReplyHelper.prototype = {
         // We search a bit here and there, as other extensions can add timestamps at other places.
         var timestamp = null;
         var messageChild = $( ".timestamp", originalMessage );
-        var messageSibling =  $( originalMessage ).siblings( ".timestamp" );
+        var messageSibling = $( originalMessage ).siblings( ".timestamp" );
         if( 0 < messageChild.length ) {
           timestamp = messageChild;
         } else if( 0 < messageSibling.length ) {
@@ -240,7 +242,8 @@ ReplyHelper.prototype = {
 
           // Construct our new author overlay
           var backgroundColor = originalMessage.parents( ".messages" ).css( "background-color" );
-          author.attr( "style", "background-color:" + backgroundColor + "; width:inherit; border-top:1px solid black; border-right:1px solid black; border-left:1px solid black; border-top-left-radius:6px; border-top-right-radius:6px; padding:2px 5px 2px 5px; z-index:2; position:relative; top:1px;" );
+          author.attr( "style", "background-color:" + backgroundColor +
+                                "; width:inherit; border-top:1px solid black; border-right:1px solid black; border-left:1px solid black; border-top-left-radius:6px; border-top-right-radius:6px; padding:2px 5px 2px 5px; z-index:2; position:relative; top:1px;" );
         }
 
         // Construct the final message element.
@@ -277,13 +280,13 @@ ReplyHelper.prototype = {
         // Remember the element for later removal.
         replyHelper.quotedMessage = quotedMessage;
       }
-    });
+    } );
 
-    $( document ).on( "mouseleave", ".reply-info", function(event) {
+    $( document ).on( "mouseleave", ".reply-info", function( event ) {
       // Remove the quote bubble
       replyHelper.quotedMessage.remove();
       replyHelper.quotedMessage = null;
-    });
+    } );
   }
 };
 
