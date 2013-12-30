@@ -7,10 +7,9 @@
 // @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
 // @license        MIT License (http://opensource.org/licenses/mit-license.php)
 //
-// @include        http://chat.stackexchange.com/*
-// @require        jquery-1.8.3.min.js
+// @ant-sites-userscript@
 //
-// @version        2.0.3
+// @version       @ant-version@
 //
 // ==/UserScript==
 
