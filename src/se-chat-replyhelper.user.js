@@ -199,7 +199,7 @@ ReplyHelper.prototype = {
       // Calculate the correct position for the bubble.
       var left = event.pageX;
       var top = event.pageY - ( messageHeight + 30 );
-      replyHelper.quotedMessage.attr( "style", "position:absolute;left:" + left + "px;top:" + top + "px;z-index:3" );
+      replyHelper.quotedMessage.attr( "style", "position:absolute;left:" + left + "px;top:" + top + "px;z-index:3; min-width:0px" );
     } );
 
     $( document ).on( "mouseenter", ".reply-info", function( event ) {
