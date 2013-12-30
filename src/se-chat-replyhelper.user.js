@@ -242,8 +242,18 @@ ReplyHelper.prototype = {
 
           // Construct our new author overlay
           var backgroundColor = originalMessage.parents( ".messages" ).css( "background-color" );
-          author.attr( "style", "background-color:" + backgroundColor +
-                                "; width:inherit; border-top:1px solid black; border-right:1px solid black; border-left:1px solid black; border-top-left-radius:6px; border-top-right-radius:6px; padding:2px 5px 2px 5px; z-index:2; position:relative; top:1px;" );
+          author.attr( "style", "background-color:" + backgroundColor + ";" +
+                                "width:inherit;" +
+                                "border-top:1px solid black;" +
+                                "border-right:1px solid black;" +
+                                "border-left:1px solid black;" +
+                                "border-top-left-radius:6px;" +
+                                "border-top-right-radius:6px;" +
+                                "padding:2px 5px 2px 5px;" +
+                                "z-index:2;" +
+                                "position:relative;" +
+                                "top:1px;"
+          );
         }
 
         // Construct the final message element.
