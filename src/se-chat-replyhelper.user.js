@@ -1,4 +1,5 @@
-﻿// ==UserScript==
+﻿/** @preserve
+// ==UserScript==
 //
 // @name           Chat Reply Helper for Stack Exchange sites
 // @description    Handle structured conversations more conveniently
@@ -12,6 +13,7 @@
 // @version       @ant-version@
 //
 // ==/UserScript==
+*/
 
 // jQuery Caret Plugin
 /*
