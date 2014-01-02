@@ -8,9 +8,9 @@ Handle structured conversations more conveniently.
 2. Press `↑` as many times as you need to mark the desired message.
 
 ### What does it do?
-First of all, the Chat Reply Helper for Stack Exchange sites provides a simple key combination to select a message to reply to.
+First of all, the Chat Reply Helper for Stack Exchange sites provides a simple input sequence to select a message to reply to. This behavior is also implemented for the [SO-ChatBot](https://github.com/Zirak/SO-ChatBot) `!!tell` trigger.
 
-This removes the need to grab the mouse and aim for the tiny reply icon. It also has the small side effect that it allows you to reply to your own messages, to possibly reference an earlier post.
+This removes the need to grab the mouse and aim for the tiny reply icon. It also has the small side effect that it allows you to reply to your own messages, to possibly reference an earlier post. 
 
 Second, it puts a highlight on the message you're currently replying to.
 
@@ -23,7 +23,7 @@ Developed on Chrome, should work in Greasemonkey as well.
 
 ### Where do I get it?
 
-- [GitHub](https://github.com/oliversalzburg/se-chat-reply-highlight)
+- [GitHub](https://github.com/oliversalzburg/se-chat-reply-highlight/tree/master/dist) (Userscript, Source)
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/stackexchange-chat-reply/edjeilghaflgcdjdldnkdihoaigdhibd)
 - [Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/se-chat-reply-helper/)
 - [Opera Add-Ons](https://addons.opera.com/en/extensions/details/chat-reply-helper-for-stack-exchange-sites/) (pending review, use Chrome version in the meanwhile)
