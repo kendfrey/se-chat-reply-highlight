@@ -26,7 +26,7 @@ Developed on Chrome, should work in Greasemonkey as well.
 - [GitHub](https://github.com/oliversalzburg/se-chat-reply-highlight/tree/master/dist) (Userscript, Source)
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/stackexchange-chat-reply/edjeilghaflgcdjdldnkdihoaigdhibd)
 - [Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/se-chat-reply-helper/)
-- [Opera Add-Ons](https://addons.opera.com/en/extensions/details/chat-reply-helper-for-stack-exchange-sites/) (pending review, use Chrome version in the meanwhile)
+- [Opera Add-Ons](https://addons.opera.com/en/extensions/details/chat-reply-helper-for-stack-exchange-sites/)
 
 ### Additional Links
 
