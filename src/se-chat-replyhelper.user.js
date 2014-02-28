@@ -1,9 +1,9 @@
 ﻿/** @preserve
 // ==UserScript==
 //
-// @name           Chat Reply Helper for Stack Exchange sites
-// @description    Handle structured conversations more conveniently
-// @homepage       http://github.com/oliversalzburg/se-chat-reply-highlight/
+// @name           @ant-name@
+// @description    @ant-description@
+// @homepage       @ant-homepage@
 // @namespace      http://oliversalzburg.github.com/
 // @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
 // @license        MIT License (http://opensource.org/licenses/mit-license.php)
