@@ -4,7 +4,7 @@
 //
 // @name           Chat Reply Helper for Stack Exchange sites
 // @description    Handle structured conversations more conveniently
-// @homepage       http://github.com/oliversalzburg/se-chat-reply-highlight/
+// @homepage       https://github.com/oliversalzburg/se-chat-reply-highlight
 // @namespace      http://oliversalzburg.github.com/
 // @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
 // @license        MIT License (http://opensource.org/licenses/mit-license.php)
