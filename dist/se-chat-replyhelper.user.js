@@ -10,9 +10,10 @@
 //
 // @include http://chat.stackexchange.com/*
 // @include http://chat.stackoverflow.com/*
-// @include http://chat.meta.stackoverflow.com/*
+// @include http://chat.meta.stackexchange.com/*
+
 //
-// @version       2.4.0
+// @version       2.4.1
 //
 // ==/UserScript==
 */
