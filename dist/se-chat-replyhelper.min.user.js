@@ -9,12 +9,12 @@
 // @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
 // @license        MIT License (http://opensource.org/licenses/mit-license.php)
 //
-// @include http://chat.stackexchange.com/*
-// @include http://chat.stackoverflow.com/*
-// @include http://chat.meta.stackexchange.com/*
+// @include /^https?:\/\/chat\.stackexchange\.com/.*$/
+// @include /^https?:\/\/chat\.stackoverflow\.com/.*$/
+// @include /^https?:\/\/chat\.meta\.stackexchange\.com/.*$/
 
 //
-// @version       2.4.1
+// @version       2.4.2
 //
 // ==/UserScript==
 */
