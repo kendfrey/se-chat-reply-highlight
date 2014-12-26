@@ -1,17 +1,12 @@
 ﻿/** @preserve
 // ==UserScript==
-//
 // @name           @ant-name@
+// @namespace      http://oliversalzburg.github.com/
+// @version        @ant-version@
 // @description    @ant-description@
 // @homepage       @ant-homepage@
-// @namespace      http://oliversalzburg.github.com/
-// @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
-// @license        MIT License (http://opensource.org/licenses/mit-license.php)
-//
+// @grant          none
 // @ant-sites-userscript@
-//
-// @version       @ant-version@
-//
 // ==/UserScript==
 */
 
