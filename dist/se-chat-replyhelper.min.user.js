@@ -1,21 +1,16 @@
 /*
 
 // ==UserScript==
-//
 // @name           Chat Reply Helper for Stack Exchange sites
+// @namespace      http://oliversalzburg.github.com/
+// @version        2.5.0
 // @description    Handle structured conversations more conveniently
 // @homepage       https://github.com/oliversalzburg/se-chat-reply-highlight
-// @namespace      http://oliversalzburg.github.com/
-// @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
-// @license        MIT License (http://opensource.org/licenses/mit-license.php)
-//
+// @grant          none
 // @include /^https?:\/\/chat\.stackexchange\.com/.*$/
 // @include /^https?:\/\/chat\.stackoverflow\.com/.*$/
 // @include /^https?:\/\/chat\.meta\.stackexchange\.com/.*$/
 
-//
-// @version       2.4.2
-//
 // ==/UserScript==
 */
 (function(c,a,e,f){c.fn.caret=function(b,h){var d,g,l=this[0],k=c.browser.msie;if("object"===typeof b&&"number"===typeof b.start&&"number"===typeof b.end)d=b.start,g=b.end;else if("number"===typeof b&&"number"===typeof h)d=b,g=h;else if("string"===typeof b)-1<(d=l.value.indexOf(b))?g=d+b[a]:d=null;else if("[object RegExp]"===Object.prototype.toString.call(b)){var p=b.exec(l.value);null!=p&&(d=p.index,g=d+p[0][a])}if("undefined"!=typeof d)return k?(k=this[0].createTextRange(),k.collapse(!0),k.moveStart("character",

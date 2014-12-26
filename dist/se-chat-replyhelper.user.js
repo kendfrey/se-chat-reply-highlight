@@ -1,20 +1,15 @@
 ﻿/** @preserve
 // ==UserScript==
-//
 // @name           Chat Reply Helper for Stack Exchange sites
+// @namespace      http://oliversalzburg.github.com/
+// @version        2.5.0
 // @description    Handle structured conversations more conveniently
 // @homepage       https://github.com/oliversalzburg/se-chat-reply-highlight
-// @namespace      http://oliversalzburg.github.com/
-// @author         Oliver Salzburg, oliversalzburg (http://github.com/oliversalzburg/)
-// @license        MIT License (http://opensource.org/licenses/mit-license.php)
-//
+// @grant          none
 // @include /^https?:\/\/chat\.stackexchange\.com/.*$/
 // @include /^https?:\/\/chat\.stackoverflow\.com/.*$/
 // @include /^https?:\/\/chat\.meta\.stackexchange\.com/.*$/
 
-//
-// @version       2.4.2
-//
 // ==/UserScript==
 */
 
