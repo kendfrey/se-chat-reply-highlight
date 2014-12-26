@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name           Chat Reply Helper for Stack Exchange sites
 // @namespace      http://oliversalzburg.github.com/
-// @version        2.5.0
+// @version        2.5.1
 // @description    Handle structured conversations more conveniently
 // @homepage       https://github.com/oliversalzburg/se-chat-reply-highlight
 // @grant          none
