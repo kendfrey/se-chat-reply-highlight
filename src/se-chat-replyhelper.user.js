@@ -29,6 +29,7 @@ $.fn.reverse = [].reverse;
  * @constructor
  */
 function ReplyHelper() {
+  this.insertStyles();
   this.registerHandler();
   this.enableQuoteBubble();
 }
@@ -68,6 +69,17 @@ ReplyHelper.prototype = {
     var _target = message.offset().top - 10;
     if( _target < 0 ) _target = 0;
     $( "html, body" ).animate( { scrollTop : _target }, 50 );
+  },
+  
+  /**
+   * Inserts styles used by this script into the page.
+   * Required to highlight reply target on mobile chat.
+   */
+  insertStyles : function() {
+    var style = document.createElement( "style" );
+    style.textContent = "div.message.reply-parent, div.message.reply-child { background-color: silver; }";
+    style.type = "text/css";
+    document.head.appendChild( style );
   },
 
   /**
