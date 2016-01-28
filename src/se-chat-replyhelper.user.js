@@ -63,11 +63,23 @@ ReplyHelper.prototype = {
    * @param message The message to scroll into view (jQuery object)
    */
   scrollTo : function( message ) {
-    if( !message.offset() ) return;
+    // new mobile UI uses a scroll container
+    var scrollContainer = $('main.scrollable');
+    if (scrollContainer.length) {
+      // See http://stackoverflow.com/a/2906009
+      var _target = message.offset().top // message to top of screen
+          - scrollContainer.offset().top // scroll container to top of screen - exclude header
+          + scrollContainer.scrollTop() // current scroll position - since message.offset() is viewport distance, need to compensate
+          - message.closest('.user-container').find('.signature').height(); // username & avatar
+      if (_target < 0) _target = 0;
+      scrollContainer.animate( { scrollTop : _target }, 50 );
+    } else { // desktop and old mobile UI just scrolled the whole page
+      if( !message.offset() ) return;
 
-    var _target = message.offset().top - 10;
-    if( _target < 0 ) _target = 0;
-    $( "html, body" ).animate( { scrollTop : _target }, 50 );
+      var _target = message.offset().top - 10;
+      if( _target < 0 ) _target = 0;
+      $( "html, body" ).animate( { scrollTop : _target }, 50 );
+    }
   },
 
   /**
