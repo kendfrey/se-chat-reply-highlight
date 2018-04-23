@@ -8,7 +8,7 @@ Handle structured conversations more conveniently.
 2. Press `↑` as many times as you need to mark the desired message.
 
 ### What does it do?
-First of all, the Chat Reply Helper for Stack Exchange sites provides a simple input sequence to select a message to reply to. This behavior is also implemented for the [SO-ChatBot](https://github.com/Zirak/SO-ChatBot) `!!tell` trigger.
+First of all, the Chat Reply Helper for Stack Exchange sites provides a simple input sequence to select a message to reply to. This behavior is also implemented for the [SO-ChatBot](https://github.com/Zirak/SO-ChatBot) `!!tell` and `!!s` triggers.
 
 This removes the need to grab the mouse and aim for the tiny reply icon. It also has the small side effect that it allows you to reply to your own messages, to possibly reference an earlier post. 
 
