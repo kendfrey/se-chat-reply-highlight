@@ -130,7 +130,7 @@ ReplyHelper.prototype = {
         //     - End of Line
         //     - One or more digits
         //     - A space
-        var _idMatch = _text.match( /^(:|!!tell ?)($|\d+| )/ );
+        var _idMatch = _text.match( /^(:|!!telll? ?|!!s\/.*\/.*\/\w* ?)($|\d+| )/ );
 
         // If the expression matched anything...
         if( _idMatch ) {
