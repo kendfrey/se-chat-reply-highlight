@@ -57,7 +57,7 @@ ReplyHelper.prototype = {
     var _inputElement = $( "#input" );
     var _caretPosition = _inputElement.caret().start;
     var _currentText = _inputElement.val();
-    var _newText = _currentText.replace( new RegExp( "^" + trigger + "\\d* ?" ), trigger + _padding + id + " " );
+    var _newText = _currentText.replace( new RegExp( "^" + trigger.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&" ) + "\\d* ?" ), trigger + _padding + id + " " );
     _inputElement.val( _newText );
     _inputElement.caret( _caretPosition, _caretPosition );
   },
